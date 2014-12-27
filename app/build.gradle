@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+apply plugin: 'robolectric'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.sys1yagi.okhttpmocktest"
+        minSdkVersion 16
+        targetSdkVersion 18
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'LICENSE'
+        exclude 'NOTICE'
+        exclude 'asm-license.txt'
+        exclude 'cglib-license.txt'
+        exclude 'org/mockito/internal/creation/jmock/jmock-license.txt'
+        exclude 'org/mockito/internal/matchers/apachecommons/commons-lang-license.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+    compile 'io.reactivex:rxandroid:0.23.0'
+    compile 'com.squareup.okhttp:okhttp:2.1.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+
+    androidTestCompile 'commons-io:commons-io:2.4'
+    androidTestCompile 'com.squareup.okhttp:mockwebserver:2.1.0'
+    androidTestCompile('org.mockito:mockito-core:1.9.5') {
+        exclude group: 'org.hamcrest'
+        exclude module: 'objenesis'
+    }
+    androidTestCompile 'junit:junit:4.11'
+    androidTestCompile('org.robolectric:robolectric:2.3') {
+        exclude module: 'classworlds'
+        exclude module: 'maven-artifact'
+        exclude module: 'maven-artifact-manager'
+        exclude module: 'maven-error-diagnostics'
+        exclude module: 'maven-model'
+        exclude module: 'maven-plugin-registry'
+        exclude module: 'maven-profile'
+        exclude module: 'maven-project'
+        exclude module: 'maven-settings'
+        exclude module: 'nekohtml'
+        exclude module: 'plexus-container-default'
+        exclude module: 'plexus-interpolation'
+        exclude module: 'plexus-utils'
+        exclude module: 'wagon-file'
+        exclude module: 'wagon-http-lightweight'
+        exclude module: 'wagon-http-shared'
+        exclude module: 'wagon-provider-api'
+    }
+}
